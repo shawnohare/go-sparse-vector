@@ -21,6 +21,11 @@ func (v *Vector) Set(key string, value float64) {
 	}
 }
 
+// Norm of the vector (with respect to the standard Euclidean inner product).
+func (v *Vector) Norm() float64 {
+	return Norm(v)
+}
+
 // New vector ready to have its components specified.
 func New() *Vector {
 	return &Vector{data: make(map[string]float64)}

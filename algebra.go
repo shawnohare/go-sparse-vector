@@ -1,6 +1,9 @@
 package svector
 
-// Add two sparse vectors to obtain a new sparse vector.
+import "math"
+
+// Add two sparse vectors to obtain a new sparse vector. This does not
+// mutate the two input vectors.
 func Add(v, w *Vector) *Vector {
 	x := New()
 	for k, vk := range v.data {
@@ -21,7 +24,7 @@ func Scale(scalar float64, v *Vector) *Vector {
 	return x
 }
 
-// Dot computes the standard Euclidean inner product between two vectors.
+// Dot product (standard Euclidean inner product) between two vectors.
 func Dot(v, w *Vector) float64 {
 	sum := 0.0
 
@@ -31,4 +34,9 @@ func Dot(v, w *Vector) float64 {
 	}
 
 	return sum
+}
+
+// Norm of a vector with respect to the standard Euclidean inner product.
+func Norm(v *Vector) float64 {
+	return math.Sqrt(Dot(v, v))
 }
